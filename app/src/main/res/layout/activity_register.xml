@@ -26,7 +26,7 @@
     <EditText
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:id="@+id/txtusername"
+        android:id="@+id/txtusernam"
         android:layout_gravity="center"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
@@ -36,7 +36,7 @@
     <EditText
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:id="@+id/txtpassword"
+        android:id="@+id/txtpasswor"
         android:layout_gravity="center"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
@@ -62,7 +62,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
-        android:text="Belum punya akun"
+        android:text="Belum punya akun"/>
 
 
 

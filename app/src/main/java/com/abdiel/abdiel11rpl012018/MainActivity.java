@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("status" , "login");
                     editor.apply();
                     //menuju main menu
-                    startActivity(new Intent(getApplicationContext(), Mainmenu.class));
+                    startActivity(new Intent(getApplicationContext(), MainMenu.class));
                 }
             }
         });

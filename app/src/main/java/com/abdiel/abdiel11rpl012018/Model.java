@@ -1,61 +1,107 @@
 package com.abdiel.abdiel11rpl012018;
 
 public class Model {
-    //https://image.tmdb.org/t/p/w500/k68nPLbIST6NP96JmTxmZijEvCA.jpg
-    String original_title;
-    String release_date;
-    String poster_path;
-    Boolean adult;
-    String overview;
-    int vote_count;
 
-    public String getOriginal_title() {
-        return original_title;
+
+    String strTeam;
+    String intFormedYear;
+    String strTeamBadge;
+    String strWebsite;
+    String strFacebook;
+    String strTwitter;
+    String strInstagram;
+    String strDescriptionEN;
+    String strSport;
+    String strCountry;
+    int idTeam;
+
+    public String getStrTeam() {
+        return strTeam;
     }
 
-    public void setOriginal_title(String original_title) {
-        this.original_title = original_title;
+    public void setStrTeam(String strTeam) {
+        this.strTeam = strTeam;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public String getIntFormedYear() {
+        return intFormedYear;
     }
 
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
+    public void setIntFormedYear(String intFormedYear) {
+        this.intFormedYear = intFormedYear;
     }
 
-    public String getPoster_path() {
-        return poster_path;
+    public String getStrTeamBadge() {
+        return strTeamBadge;
     }
 
-    public void setPoster_path(String poster_path) {
-        this.poster_path = poster_path;
+    public void setStrTeamBadge(String strTeamBadge) {
+        this.strTeamBadge = strTeamBadge;
     }
 
-    public Boolean getAdult() {
-        return adult;
+    public String getStrWebsite() {
+        return strWebsite;
     }
 
-    public void setAdult(Boolean adult) {
-        this.adult = adult;
+    public void setStrWebsite(String strWebsite) {
+        this.strWebsite = strWebsite;
     }
 
-    public String getOverview() {
-        return overview;
+    public String getStrFacebook() {
+        return strFacebook;
     }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
+    public void setStrFacebook(String strFacebook) {
+        this.strFacebook = strFacebook;
     }
 
-    public int getVote_count() {
-        return vote_count;
+    public String getStrTwitter() {
+        return strTwitter;
     }
 
-    public void setVote_count(int vote_count) {
-        this.vote_count = vote_count;
+    public void setStrTwitter(String strTwitter) {
+        this.strTwitter = strTwitter;
+    }
+
+    public String getStrInstagram() {
+        return strInstagram;
+    }
+
+    public void setStrInstagram(String strInstagram) {
+        this.strInstagram = strInstagram;
+    }
+
+    public String getStrDescriptionEN() {
+        return strDescriptionEN;
+    }
+
+    public void setStrDescriptionEN(String strDescriptionEN) {
+        this.strDescriptionEN = strDescriptionEN;
+    }
+
+    public String getStrSport() {
+        return strSport;
+    }
+
+    public void setStrSport(String strSport) {
+        this.strSport = strSport;
+    }
+
+    public String getStrCountry() {
+        return strCountry;
+    }
+
+    public void setStrCountry(String strCountry) {
+        this.strCountry = strCountry;
     }
 
 
+
+    public int getIdTeam() {
+        return idTeam;
+    }
+
+    public void setIdTeam(int idTeam) {
+        this.idTeam = idTeam;
+    }
 }

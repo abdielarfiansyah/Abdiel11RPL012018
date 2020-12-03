@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-public class controlclass extends AppCompatActivity {
+public class ControlClass extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
 
     @Override

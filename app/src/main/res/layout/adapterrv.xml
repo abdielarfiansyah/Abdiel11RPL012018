@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView
     android:id="@+id/cardku"
     android:layout_margin="10dp"
     android:elevation="10dp"
     app:cardElevation="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -26,7 +25,6 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
             <TextView
                 android:textColor="#1C35C1"
                 android:textStyle="bold"
@@ -36,11 +34,17 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:id="@+id/txtcountry"
+                android:text="Negara"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
                 android:text="desc placeholder"
                 android:id="@+id/tvdesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.abdiel.abdiel11rpl012018;
 
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -11,20 +12,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MahasiswaViewHolder> {
-    private ArrayList<Model> dataList;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
+public class DataAdapterFavourite extends RecyclerView.Adapter<DataAdapterFavourite.DatakuViewHolder> {
+    private List<ModelMovieRealm> dataList;
     private Callback callback;
     View viewku;
     int posku;
+    Realm realm;
+    MainMenu.RealmHelper realmHelper;
 
     interface Callback {
         void onClick(int position);
@@ -32,30 +38,35 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MahasiswaViewH
     }
 
 
-    public DataAdapter(ArrayList<Model> dataList, Callback callback) {
+    public DataAdapterFavourite(List<ModelMovieRealm> dataList, Callback callback) {
         this.callback = callback;
         this.dataList = dataList;
-        Log.d("makanan", "DataAdapter: "+dataList.size()+"");
+        Log.d("makanan", "MahasiswaAdapter: "+dataList.size()+"");
+        RealmConfiguration configuration = new RealmConfiguration.Builder().build();
+        realm = Realm.getInstance(configuration);
+        realmHelper = new MainMenu.RealmHelper(realm);
     }
 
     @Override
-    public MahasiswaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DatakuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.adapterrv, parent, false);
-        return new MahasiswaViewHolder(view);
+        return new DatakuViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final MahasiswaViewHolder holder, final int position) {
-        holder.txtNama.setText(dataList.get(position).getStrTeam());
-        holder.txtnegara.setText( dataList.get( position ).getStrCountry() );
-        holder.txtNpm.setText(dataList.get(position).getStrSport());
-        Log.d("makananku", "onBindViewHolder: "+dataList.get(position).getStrTeamBadge());
+    public void onBindViewHolder(final DatakuViewHolder holder, final int position) {
+        holder.txtNama.setText(dataList.get(position).getTeam());
+        holder.txtNpm.setText(dataList.get(position).getCountry());
+        holder.txtNpm.setText(dataList.get(position).getSport());
+
+        Log.d("makananku", "onBindViewHolder: "+dataList.get(position).getTeamBadge());
+        //pakai glide karena untuk nampilkan data gambar dari URL / permission / graddle
         Glide.with(holder.itemView)
-                .load(dataList.get(position).getStrTeamBadge())
-                .override(Target.SIZE_ORIGINAL)
-                .placeholder(R.mipmap.ic_launcher)
+                .load(dataList.get(position).getTeamBadge())
+                //.override(Target.SIZE_ORIGINAL)
                 .apply(new RequestOptions().override(600, 200))
+                .placeholder(R.mipmap.ic_launcher)
                 .into(holder.ivprofile);
 
     }
@@ -65,20 +76,18 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MahasiswaViewH
         return (dataList != null) ? dataList.size() : 0;
     }
 
-    public class MahasiswaViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
-        private TextView txtNama, txtNpm, txtnegara;
+    public class DatakuViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
+        private TextView txtNama, txtNpm;
         CardView card;
         ImageView ivprofile;
 
-        public MahasiswaViewHolder(View itemView) {
+        public DatakuViewHolder(View itemView) {
             super(itemView);
             viewku=itemView;
             card = (CardView) itemView.findViewById(R.id.cardku);
             ivprofile = (ImageView) itemView.findViewById(R.id.ivprofile);
             txtNama = (TextView) itemView.findViewById(R.id.tvname);
             txtNpm = (TextView) itemView.findViewById(R.id.tvdesc);
-            txtnegara = (TextView) itemView.findViewById( R.id.txtcountry );
-
             itemView.setOnCreateContextMenuListener(this);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -111,11 +120,31 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.MahasiswaViewH
 
                 case 2:
                     //Do stuff
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    //Yes button clicked
+                                    realmHelper.delete(dataList.get(posku).getIdTeam());
+                                    notifyDataSetChanged();
+                                    break;
 
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    //No button clicked
+                                    break;
+                            }
+                        }
+                    };
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(viewku.getContext());
+                    builder.setMessage("Are you sure want to delete?").setPositiveButton("Yes", dialogClickListener)
+                            .setNegativeButton("No", dialogClickListener).show();
                     break;
             }
             return true;
         }
+
     };
 
 }
